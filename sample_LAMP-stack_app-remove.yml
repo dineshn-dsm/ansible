@@ -1,0 +1,23 @@
+---
+- name: "kodecloud ecommerce app uninstall"
+  hosts: localhost
+  become: yes
+  vars:
+    packages:
+      - firewalld
+      - mysql-server
+      - apache2
+      - php
+      - php-mysql
+  tasks:
+    - name: remove package
+      apt:
+        name: '{{ item }}'
+        state: absent
+      with_items: '{{ packages }}'
+    - name: clean apache html location
+      file:
+        path: /var/www/html/
+        state: absent
+        backup: yes
+

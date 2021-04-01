@@ -26,7 +26,7 @@ ansible 2.9.6
 
 Install ansible --> clone this repo --> update  required input values --> Run below commands
 
-ansible-playbook kodecloud-ecomm-app.yml
+ansible-playbook LAMP-stack_app-deploy.yml
 
 
 ## Changes required
@@ -44,7 +44,6 @@ login_unix_socket: /var/run/mysqld/mysqld.soc
 package works for Ubuntu, working for other LInux os family.
 
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 NA
 ## Modules
@@ -63,7 +62,7 @@ No external Modules.
 
 ## Revert changes
 
-ansible-playbook sample_LAMP-stack_app-remove.yml
+ansible-playbook LAMP-stack_app-remove.yml
 
 ## Author
 

@@ -1,0 +1,15 @@
+#ansible-galaxy init mysql  --> downloads to current path
+#ansible-galaxy install acandid.httpd --> default role path /root/.ansible/roles/
+
+- name: install httpd
+  hosts: localhost
+  roles:
+    - acandid.httpd
+
+- name: install mysql
+  hosts: localhost
+  roles:
+    - role: geerlingguy.mysql
+      become: yes
+      vars:
+        mysql_user_name: dbuser

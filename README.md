@@ -1,4 +1,4 @@
-# Deploy sample LAMP stack application using ansibl playbook on Ubuntu
+# Deploy sample LAMP stack application using ansible playbook
 
 Playbook will install below packages and creates DB and imports sample data and clone sample code from github.
 
@@ -18,7 +18,7 @@ These types of resources are supported:
 * [git]
 * [replace]
 
-## Terraform versions
+## Ansible versions
 
 ansible 2.9.6
 
@@ -66,4 +66,4 @@ ansible-playbook LAMP-stack_app-remove.yml
 
 ## Author
 
-Module managed by [Dinesh N](https://github.com/dineshn-dsm).
+Managed by [Dinesh N](https://github.com/dineshn-dsm).

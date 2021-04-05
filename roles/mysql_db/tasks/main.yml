@@ -1,0 +1,16 @@
+---
+# tasks file for mysql_db
+    - name: install db package
+      apt:
+        name: '{{ item }}'
+        state: latest
+      with_items:
+        - mysql-server
+        - php-mysql
+    - name: enable service
+      service:
+        name: '{{ item }}'
+        state: started
+        enabled: yes
+      with_items:
+        - mysql

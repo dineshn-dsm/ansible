@@ -1,0 +1,14 @@
+    - name: clean apache html location
+      file:
+        path: /var/www/html/
+        state: absent
+    - name: git checkout code
+      git:
+        repo: 'https://github.com/kodekloudhub/learning-app-ecommerce.git'
+        dest: /var/www/html
+    - name: DB endpooint updated
+      replace:
+        path: /var/www/html/index.php
+        regexp: '172.20.1.101'
+        replace: '{{ db_endpoint }}'
+        backup: yes

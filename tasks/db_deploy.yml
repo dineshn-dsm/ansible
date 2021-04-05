@@ -1,0 +1,19 @@
+    - name: create db
+      mysql_db:
+        name: '{{ db_name }}'
+        state: present
+        login_unix_socket: /var/run/mysqld/mysqld.sock  #comment this line if using remote host
+      become: yes
+    - name: add mysql mysql_user
+      mysql_user:
+        login_unix_socket: /var/run/mysqld/mysqld.sock  #comment this line if using remote host
+        name: '{{ db_user }}'
+        password: '{{ db_password }}'
+        priv: "{{ db_name }}.*:ALL"
+      become: yes
+    - name: import mysql sql
+      mysql_db:
+        state: import
+        name: all
+        target: files/db-load-script.sql
+        login_unix_socket: /var/run/mysqld/mysqld.sock  #comment this line if using remote host

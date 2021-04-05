@@ -3,62 +3,14 @@
   hosts: localhost
   become: yes
   vars:
-    packages:
-      - firewalld
-      - mysql-server
-      - apache2
-      - php
-      - php-mysql
-    services:
-      - firewalld
-      - mysql
-      - apache2
     db_name: ecomdb
     db_user: ecomuser
     db_password: ecompassword
-    db_endpoint: localhost    
+    db_endpoint: localhost
+  roles:
+    - mysql_db
+    - apache_web
   tasks:
-    - name: install package
-      apt:
-        name: '{{ item }}'
-        state: latest
-      with_items: '{{ packages }}'
-    - name: enable service
-      service:
-        name: '{{ item }}'
-        state: started
-        enabled: yes
-      with_items: '{{ services }}'
-    - name: create db
-      mysql_db:
-        name: '{{ db_name }}'
-        state: present
-        login_unix_socket: /var/run/mysqld/mysqld.sock  #comment this line if using remote host
-      become: yes
-    - name: add mysql mysql_user
-      mysql_user:
-        login_unix_socket: /var/run/mysqld/mysqld.sock  #comment this line if using remote host
-        name: '{{ db_user }}'
-        password: '{{ db_password }}'
-        priv: "ecomdb.*:ALL"
-      become: yes
-    - name: import mysql sql
-      mysql_db:
-        state: import
-        name: all
-        target: ./db-load-script.sql
-        login_unix_socket: /var/run/mysqld/mysqld.sock  #comment this line if using remote host
-    - name: clean apache html location
-      file:
-        path: /var/www/html/
-        state: absent
-    - name: git checkout code
-      git:
-        repo: 'https://github.com/kodekloudhub/learning-app-ecommerce.git'
-        dest: /var/www/html
-    - name: DB endpooint updated
-      replace:
-        path: /var/www/html/index.php
-        regexp: '172.20.1.101'
-        replace: '{{ db_endpoint }}'
-        backup: yes
+    #- include: tasks/package_install.yml
+    - include: tasks/db_deploy.yml
+    - include: tasks/web_deploy.yml

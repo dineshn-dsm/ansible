@@ -1,0 +1,7 @@
+- name: debug tasks
+  hosts: localhost
+  vars:
+    var1: value1
+  tasks:
+    - debug:
+        msg:  "test message from var {{ var1 }}"

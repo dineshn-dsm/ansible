@@ -1,0 +1,16 @@
+-
+    hosts: localhost
+    vars:
+        car_model: 'BMW m3'
+        country_name: usa
+        title: 'systems engineer'
+        win_install_path: "c:\\windows\\hosts"
+    tasks:
+        -   debug:
+              msg: 'echo "I work as a {{ title | title }}"'
+        -   debug:
+              msg: 'echo "car model is  {{ car_model | lower }}"'
+        -   debug:
+              msg: 'echo "car model country is   {{ country_name | upper }}"'
+        -   debug:
+              msg: 'echo "split path   {{ win_install_path | win_splitdrive | first}}"'

@@ -1,0 +1,22 @@
+-   name: aysnc in parellel  web
+    hosts: web_server
+    tasks:
+    -   command: /opt/test.py
+        async: 360
+        poll: 0
+        regsiter: webapp_result
+
+-   name: aysnc in parellel db
+    hosts: db_server
+    tasks:
+    -   command: /opt/test.py
+        async: 360
+        poll: 0
+        regsiter: database_result
+
+-   name: async status
+    tasks:
+    -   async_status: jid="{{ webapp_result.ansible_job_id }}"
+        register: job_results
+        until: job_result.finished
+        retry: 60

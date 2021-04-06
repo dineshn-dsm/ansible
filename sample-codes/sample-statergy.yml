@@ -1,0 +1,24 @@
+-
+  name: Deploy a web application
+  hosts: db_and_web_server
+  serial: 10   #no of servers to run in parellel
+  tasks:
+    - name: Install dependencies
+
+
+-
+  name: Deploy a web application
+  hosts: app_servers
+  serial:   # run playbook for no of servers as in below array, i.e first 2, then 3, then 5 servers
+    - 2
+    - 3
+    - 5
+  tasks:
+    - name: Install dependencies
+
+-
+  name: Deploy a web application
+  hosts: db_and_web_server
+  serial: "20%"  #no of servers to run in parellel in percentage
+  tasks:
+    - name: Install dependencies

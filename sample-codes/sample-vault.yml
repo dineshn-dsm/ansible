@@ -1,0 +1,9 @@
+ansible-vault edit password-file
+ansible-vault view password-file
+ansible-vault create password-file
+
+
+
+  ansible-playbook playbook.yml -i inventoy.txt -ask-vault-pass  #provide password in commandline to decrypt inventoy.txt file
+ansible-playbook playbook.yml -i inventoy.txt -vault-password-file ~./vault_pass.txt #pass password file  to decrypt inventoy.txt file
+ansible-playbook playbook.yml -i inventoy.txt -vault-password-file ~./vault_pass.py #pass py file to execute and retrive passord (eg: from vault) to decrypt inventoy.txt file

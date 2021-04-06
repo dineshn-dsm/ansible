@@ -1,0 +1,14 @@
+-
+  name: Deploy a web application
+  hosts: app_servers
+  any_errors_fatal: true #stop task execution if any one server fails, by default, tasks will fail only on failed servers.
+  tasks:
+    - name: Install dependencies
+        ~~~
+        ~~~
+      ignore_errors: yes  #continue next task even if this task fails eg: sending email
+
+    - name: Install dependencies
+      command: cat /etc/test.log
+      register: command_output
+      failed_when:  " 'ERROR' in command_output.stdout" #fails task when found ERROR on cat file.

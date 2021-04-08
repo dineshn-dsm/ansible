@@ -5,3 +5,5 @@
   tasks:
     - debug:
         msg:  "test message from var {{ var1 }}"
+    - debug:  var=ansible_default_ipv4.address
+    - debug:  var=ansible_hostname

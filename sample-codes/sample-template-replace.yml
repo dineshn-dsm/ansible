@@ -1,0 +1,7 @@
+- name: template replace
+  hosts: localhost
+  tasks:
+    - name: template
+      template:
+        src: sample-template.j2
+        dest: /tmp/dnsupdate
